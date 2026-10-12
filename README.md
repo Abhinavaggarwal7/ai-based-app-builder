@@ -4,7 +4,7 @@ Forge turns a natural-language prompt into a small React app. It saves the chat 
 
 ## Features
 
-- Prompt-based React and Tailwind code generation with Gemini 3.8 Flash.
+- Prompt-based React and Tailwind code generation with Gemini 3.5 Flash Lite.
 - Server-Sent Events (SSE) for generation and agent progress updates.
 - Sandpack preview and read-only source browser.
 - Persistent workspaces and project history, stored in PostgreSQL through Prisma.
@@ -38,7 +38,7 @@ Generation and improvement each cost one credit. The feature descriptions shown 
 
 ## Run locally
 
-Requirements: Node.js 22+, a PostgreSQL database, a Clerk application, a Gemini API key, an Arcjet key, and a Supabase project with a `workspace-images` storage bucket.
+Requirements: Node.js 22+, a PostgreSQL database, a Clerk application, a Gemini API key, an Arcjet key, and a Supabase project with a `workspace-images` storage bucket and service role key.
 
 ```bash
 git clone https://github.com/Abhinavaggarwal7/ai-based-app-builder.git
@@ -69,6 +69,7 @@ NEXT_PUBLIC_CLERK_PRO_PLAN_ID=
 # Supabase Storage
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
 
 # PostgreSQL / Prisma
 DATABASE_URL=
@@ -80,6 +81,7 @@ ARCJET_KEY=
 ```
 
 `DATABASE_URL` is used by the app at runtime. `DIRECT_URL` is used by Prisma CLI migrations. Keep secret values out of source control.
+`SUPABASE_SERVICE_ROLE_KEY` is used only by the authenticated image upload API route; keep it secret and never expose it with a `NEXT_PUBLIC_` prefix.
 
 ## Data model
 
