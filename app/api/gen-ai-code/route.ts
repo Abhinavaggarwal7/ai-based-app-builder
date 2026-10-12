@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, ThinkingLevel } from "@google/genai";
 import { db } from "@/lib/prisma";
 import { CREDIT_COST_PER_GENERATION } from "@/lib/constants";
 import type { Message, FileData } from "@/types/workspace";
@@ -464,7 +464,7 @@ export async function POST(request: NextRequest) {
             responseMimeType: "application/json",
             abortSignal: generationAbortController.signal,
             thinkingConfig: {
-              thinkingLevel: "MEDIUM",
+              thinkingLevel: ThinkingLevel.MEDIUM,
             },
           },
         });
